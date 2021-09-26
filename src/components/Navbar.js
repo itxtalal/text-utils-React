@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
 export default function Navbar(props) {
   return (
     <nav
@@ -23,28 +25,35 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="/">
+              <Link className="nav-link " aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="/">
+              <Link className="nav-link " aria-current="page" to="/about">
                 About
-              </a>
+              </Link>
             </li>
           </ul>
+          <div
+            className={`form-check form-switch text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
+            <input
+              className=" form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              onClick={props.toggleMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Dark Mode
+            </label>
+          </div>
         </div>
-      </div>
-      <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'} m-2`}>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="flexSwitchCheckDefault"
-          onClick={props.toggleMode}
-        />
-        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-          Dark Mode
-        </label>
       </div>
     </nav>
   );
